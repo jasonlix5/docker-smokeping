@@ -6,7 +6,7 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 /etc/init.d/fcgiwrap start
 
-/etc/init.d/smokeping start
+smokeping --config=/etc/smokeping/config
 
 if [ ! -e /etc/nginx/fcgiwrap.conf ]
 then
