@@ -6,6 +6,14 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 /etc/init.d/fcgiwrap start
 
+if [ ! -e /var/run/smokeping ]
+then
+	mkdir /var/run/smokeping
+fi
+if [ -e /var/run/smokeping/smokeping.pid ]
+then
+	rm -f /var/run/smokeping/smokeping.pid
+fi
 smokeping --config=/etc/smokeping/config
 
 if [ ! -e /etc/nginx/fcgiwrap.conf ]
