@@ -1,20 +1,13 @@
 # docker-smokeping
 smokeping container
 
-# 启动
+# 启动 Smokeping Master
 
-`docker run -d -p 80:80 --name smokeping jasonlix/docker-smokeping`
+> `ZONE`变量为时区，请更改为你当地的时区。
 
-# 修改时区
+`docker run -d -p 80:80 --name smokeping -e ZONE="Asia/Shanghai" jasonlix/docker-smokeping`
 
-> 默认为`Asia/Shanghai`时区，可通过以下命令更改你需要的时区。
-
-```shell
-docker exec smokeping rm -f /etc/localtime
-docker exec smokeping ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-```
-
-# 更改smokeping配置文件
+## 更改smokeping配置文件
 
 进入smokeping容器里：
 `docker exec -it smokeping bash`
@@ -30,9 +23,16 @@ docker exec smokeping ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 退出smokeping容器：
 `exit`
 
+> 你也可以在启动smokeping容器时，将你的smokeping配置文件挂载进容器里：  
+> `docker run -d -p 80:80 --name smokeping -e ZONE="Asia/Shanghai" -v /etc/smokeping:/etc/smokeping jasonlix/docker-smokeping`
+
 ----------------------
 
-> 你也可以在启动smokeping容器时，将你的smokeping配置文件挂载进容器里：  
-> `docker run -d -p 80:80 --name smokeping -v /etc/smokeping:/etc/smokeping jasonlix/docker-smokeping`
+# 启动 Smokeping Slave
+
+> `ZONE`：配置时区  
+> `SECRET`：smokeping slave的密码
+
+`docker run -d --name smokeping_slave -e ZONE="Asia/Shanghai" -e SECRET="password" jasonlix/docker-smokeping smokeping --master-url=http://**Your_master_server_ip**/smokeping.cgi --cache-dir=/var/lib/smokeping/ --shared-secret=/secret.txt --slave-name=**slave_name** --nodaemon`
 
 ----------------------
