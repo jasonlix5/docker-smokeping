@@ -2,13 +2,12 @@ FROM ubuntu:xenial
 
 MAINTAINER Smokeping "jasonlix5@gmail.com"
 
-ENV NGINX_VERSION 1.10.0-0ubuntu0.16.04.1
 ENV SMOKEPING_VERSION 2.6.11-2
 
 RUN apt-get update && \
     apt-get install --no-install-recommends --no-install-suggests -y \
-      nginx=${NGINX_VERSION} \
       smokeping=${SMOKEPING_VERSION} \
+      nginx \
       fcgiwrap \
       openssh-client \
       curl \
