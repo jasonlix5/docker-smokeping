@@ -20,6 +20,7 @@ RUN apt-get update && \
   dnsutils \
   sendmail \
   fonts-wqy-zenhei && \
+  tzdata && \
   rm -rf /var/lib/apt/lists/*
 
 # forward request and error logs to docker log collector
