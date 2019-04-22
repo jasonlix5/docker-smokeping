@@ -4,8 +4,8 @@ LABEL Smokeping="jasonlix5@gmail.com"
 
 ENV SMOKEPING_VERSION 2.6.11-4
 
-COPY ./conf/apt/sources.list /etc/apt/sources.list
-RUN chmod 644 /etc/apt/sources.list
+# COPY ./conf/apt/sources.list /etc/apt/sources.list
+# RUN chmod 644 /etc/apt/sources.list
 
 RUN apt-get update && \
   apt-get install --no-install-recommends --no-install-suggests -y \
