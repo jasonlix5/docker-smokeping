@@ -33,6 +33,6 @@ smokeping container
 > `ZONE`：配置时区  
 > `SECRET`：smokeping slave的密码
 
-`docker run -d --name smokeping_slave -e ZONE="Asia/Shanghai" -e SECRET="password" jasonlix/docker-smokeping smokeping --master-url=http://**Your_master_server_ip**/smokeping.cgi --cache-dir=/var/lib/smokeping/ --shared-secret=/secret.txt --slave-name=**slave_name** --nodaemon`
+`docker run -d --name smokeping_slave -e ZONE="Asia/Shanghai" -e SECRET="password" jasonlix/docker-smokeping smokeping --master-url=http://**Your_master_server_ip**/smokeping.cgi --cache-dir=/var/lib/smokeping/ --shared-secret=/etc/smokeping/smokeping_secrets --slave-name=**slave_name** --nodaemon`
 
 ----------------------
