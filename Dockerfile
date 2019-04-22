@@ -7,8 +7,8 @@ ENV SMOKEPING_VERSION 2.6.11-4
 # COPY ./conf/apt/sources.list /etc/apt/sources.list
 # RUN chmod 644 /etc/apt/sources.list
 
-RUN apt-get update && \
-  apt-get install --no-install-recommends --no-install-suggests -y \
+RUN apt update && \
+  DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends --no-install-suggests -y \
   smokeping=${SMOKEPING_VERSION} \
   nginx \
   fcgiwrap \
@@ -19,7 +19,7 @@ RUN apt-get update && \
   echoping \
   dnsutils \
   sendmail \
-  fonts-wqy-zenhei && \
+  fonts-wqy-zenhei \
   tzdata && \
   rm -rf /var/lib/apt/lists/*
 
